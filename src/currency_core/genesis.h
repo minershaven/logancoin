@@ -12,8 +12,8 @@ namespace currency
 #ifndef TESTNET
   struct genesis_tx_raw_data
   {
-    uint64_t const v[161];
-    uint8_t const r[7];
+    uint64_t const v[14];   // Logan Coin genesis
+    uint8_t const r[4];
   };
 
 #else
