@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="42%" r="60%">
+      <stop offset="0" stop-color="#2a1747"/><stop offset="1" stop-color="#0d0718"/>
+    </radialGradient>
+    <linearGradient id="scale" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#c58cf2"/><stop offset=".55" stop-color="#8f45d6"/><stop offset="1" stop-color="#5a228f"/>
+    </linearGradient>
+    <linearGradient id="belly" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e4ff8a"/><stop offset="1" stop-color="#9be01a"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="eyeglow" x="-200%" y="-200%" width="500%" height="500%">
+      <feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="disc"><circle cx="256" cy="256" r="214"/></clipPath>
+  </defs>
+
+  <!-- coin -->
+  <circle cx="256" cy="256" r="240" fill="#0d0718"/>
+  <circle cx="256" cy="256" r="214" fill="url(#bg)"/>
+  <circle cx="256" cy="256" r="224" fill="none" stroke="#a6ff1a" stroke-width="18" filter="url(#glow)"/>
+  <circle cx="256" cy="256" r="236" fill="none" stroke="#5a228f" stroke-width="5"/>
+
+  <g clip-path="url(#disc)">
+    <!-- back frill spikes -->
+    <path d="M214 160 L150 104 L178 168 L112 150 L166 206 L96 214 L162 246 L98 280 L170 284 L116 334 L182 318 L144 372 L200 340 L178 400 L214 360 L226 300 L236 240 Z"
+          fill="#6b2aa8" stroke="#1a0b2e" stroke-width="6" stroke-linejoin="round"/>
+    <path d="M206 196 L160 186 L196 222 L150 252 L198 262 L164 304 L208 292 L196 336 L222 300 Z" fill="#8a3fcf" opacity=".9"/>
+    <!-- neck -->
+    <path d="M140 520 C126 440 168 372 206 326 C230 296 232 270 214 238 L304 258 C318 302 304 342 280 372 C252 408 256 462 306 520 Z"
+          fill="url(#scale)" stroke="#1a0b2e" stroke-width="7" stroke-linejoin="round"/>
+    <!-- neck scales -->
+    <g stroke="#4a1a78" stroke-width="3" fill="none" opacity=".7">
+      <path d="M196 360 q14 -8 26 2"/><path d="M182 400 q14 -8 26 2"/><path d="M176 440 q14 -8 26 2"/><path d="M178 480 q14 -8 26 2"/>
+      <path d="M220 320 q12 -8 24 2"/><path d="M212 432 q12 -8 24 2"/><path d="M220 392 q12 -8 24 2"/>
+    </g>
+    <!-- belly plates -->
+    <path d="M296 262 C308 302 294 338 268 370 C240 404 240 456 280 520 L314 520 C278 458 276 410 302 378 C330 344 338 300 322 262 Z"
+          fill="url(#belly)" stroke="#1a0b2e" stroke-width="5" stroke-linejoin="round"/>
+    <g stroke="#6d9c10" stroke-width="3" fill="none" opacity=".85">
+      <path d="M304 290 L324 296"/><path d="M296 322 L316 330"/><path d="M282 352 L302 362"/><path d="M266 384 L288 394"/><path d="M258 420 L281 426"/><path d="M262 458 L285 460"/><path d="M272 494 L296 494"/>
+    </g>
+  </g>
+
+  <!-- horns -->
+  <path d="M214 170 C190 120 178 92 150 64 C196 88 226 118 244 158 Z" fill="#e9dcff" stroke="#1a0b2e" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M244 160 C236 116 238 88 228 58 C262 92 274 124 272 160 Z" fill="#d7c2ff" stroke="#1a0b2e" stroke-width="6" stroke-linejoin="round"/>
+  <!-- head -->
+  <path d="M196 196 L214 160 L262 146 L312 158 L366 178 L414 196 L428 214 L414 226 L362 228 L330 238
+           L378 256 L408 276 L394 290 L344 284 L300 282 L262 290 L232 266 L212 238 Z"
+        fill="url(#scale)" stroke="#1a0b2e" stroke-width="7" stroke-linejoin="round"/>
+  <!-- mouth -->
+  <path d="M330 238 L378 256 L402 274 L340 268 L300 254 Z" fill="#2a0f3f"/>
+  <!-- teeth -->
+  <g fill="#ffffff" stroke="#1a0b2e" stroke-width="2.5" stroke-linejoin="round">
+    <path d="M346 229 L352 246 L358 229 Z"/><path d="M366 228 L371 243 L377 228 Z"/><path d="M384 228 L388 240 L393 227 Z"/>
+    <path d="M344 268 L349 255 L354 268 Z"/><path d="M362 271 L367 258 L372 271 Z"/><path d="M380 274 L385 262 L390 274 Z"/>
+    <path d="M400 227 L403 238 L408 226 Z"/>
+  </g>
+  <!-- brow ridge + snout details -->
+  <path d="M250 178 L300 170 L330 186 L296 190 Z" fill="#b87cf0" stroke="#1a0b2e" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M402 200 L414 206" stroke="#1a0b2e" stroke-width="5" stroke-linecap="round"/>
+  <g stroke="#5a228f" stroke-width="3" fill="none" opacity=".7"><path d="M232 214 q16 -6 28 6"/><path d="M244 244 q16 -6 28 6"/><path d="M340 200 l24 6"/><path d="M332 214 l30 4"/></g>
+  <!-- eye -->
+  <path d="M286 188 L318 186 L308 200 L288 199 Z" fill="#c8ff4d" filter="url(#eyeglow)"/>
+  <circle cx="303" cy="193" r="3.5" fill="#ffffff"/>
+
+  <!-- sparkles -->
+  <g fill="#c8ff4d" filter="url(#glow)">
+    <path d="M410 96 l5 13 13 5 -13 5 -5 13 -5 -13 -13 -5 13 -5 Z"/>
+    <path d="M444 300 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4 Z"/>
+    <path d="M84 340 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4 Z"/>
+    <path d="M100 120 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3 Z"/>
+  </g>
+</svg>
