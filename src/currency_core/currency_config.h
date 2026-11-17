@@ -8,9 +8,9 @@
 
 
 #ifndef TESTNET
-#define CURRENCY_FORMATION_VERSION                      201
+#define CURRENCY_FORMATION_VERSION                      31  // Logan Coin network id (must stay small: archive versions are derived from it and capped at 255)
 #else
-#define CURRENCY_FORMATION_VERSION                      202
+#define CURRENCY_FORMATION_VERSION                      33
 #endif
 
 #define CURRENCY_GENESIS_NONCE                          (CURRENCY_FORMATION_VERSION + 701041020117) // Logan Coin
