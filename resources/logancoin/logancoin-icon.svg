@@ -1,78 +1,75 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
-    <radialGradient id="bg" cx="50%" cy="42%" r="60%">
-      <stop offset="0" stop-color="#2a1747"/><stop offset="1" stop-color="#0d0718"/>
-    </radialGradient>
-    <linearGradient id="scale" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#c58cf2"/><stop offset=".55" stop-color="#8f45d6"/><stop offset="1" stop-color="#5a228f"/>
-    </linearGradient>
-    <linearGradient id="belly" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#e4ff8a"/><stop offset="1" stop-color="#9be01a"/>
-    </linearGradient>
-    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-    <filter id="eyeglow" x="-200%" y="-200%" width="500%" height="500%">
-      <feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-    <clipPath id="disc"><circle cx="256" cy="256" r="214"/></clipPath>
+    <radialGradient id="bg" cx="50%" cy="40%" r="62%"><stop offset="0" stop-color="#2b1846"/><stop offset="1" stop-color="#0c0716"/></radialGradient>
+    <linearGradient id="sc" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b16fe8"/><stop offset=".5" stop-color="#8340c4"/><stop offset="1" stop-color="#54208a"/></linearGradient>
+    <linearGradient id="dk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7a36b8"/><stop offset="1" stop-color="#3e1566"/></linearGradient>
+    <linearGradient id="bl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f0ffc0"/><stop offset=".5" stop-color="#c8f560"/><stop offset="1" stop-color="#8fd11a"/></linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="eg" x="-300%" y="-300%" width="700%" height="700%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <clipPath id="inring"><path d="M0 0 H512 V200 H0 Z M256 262 m-214 0 a214 214 0 1 0 428 0 a214 214 0 1 0 -428 0 Z"/></clipPath>
   </defs>
 
-  <!-- coin -->
-  <circle cx="256" cy="256" r="240" fill="#0d0718"/>
-  <circle cx="256" cy="256" r="214" fill="url(#bg)"/>
-  <circle cx="256" cy="256" r="224" fill="none" stroke="#a6ff1a" stroke-width="18" filter="url(#glow)"/>
-  <circle cx="256" cy="256" r="236" fill="none" stroke="#5a228f" stroke-width="5"/>
+  <circle cx="256" cy="262" r="226" fill="url(#bg)"/>
+  <!-- ring: full ring, the dragon's head and horns are drawn over its top -->
+  <circle cx="256" cy="262" r="222" fill="none" stroke="#2a0f45" stroke-width="30"/>
+  <circle cx="256" cy="262" r="222" fill="none" stroke="#a6ff1a" stroke-width="16" filter="url(#glow)"/>
 
-  <g clip-path="url(#disc)">
-    <!-- back frill spikes -->
-    <path d="M214 160 L150 104 L178 168 L112 150 L166 206 L96 214 L162 246 L98 280 L170 284 L116 334 L182 318 L144 372 L200 340 L178 400 L214 360 L226 300 L236 240 Z"
-          fill="#6b2aa8" stroke="#1a0b2e" stroke-width="6" stroke-linejoin="round"/>
-    <path d="M206 196 L160 186 L196 222 L150 252 L198 262 L164 304 L208 292 L196 336 L222 300 Z" fill="#8a3fcf" opacity=".9"/>
-    <!-- neck -->
-    <path d="M140 520 C126 440 168 372 206 326 C230 296 232 270 214 238 L304 258 C318 302 304 342 280 372 C252 408 256 462 306 520 Z"
-          fill="url(#scale)" stroke="#1a0b2e" stroke-width="7" stroke-linejoin="round"/>
-    <!-- neck scales -->
-    <g stroke="#4a1a78" stroke-width="3" fill="none" opacity=".7">
-      <path d="M196 360 q14 -8 26 2"/><path d="M182 400 q14 -8 26 2"/><path d="M176 440 q14 -8 26 2"/><path d="M178 480 q14 -8 26 2"/>
-      <path d="M220 320 q12 -8 24 2"/><path d="M212 432 q12 -8 24 2"/><path d="M220 392 q12 -8 24 2"/>
-    </g>
-    <!-- belly plates -->
-    <path d="M296 262 C308 302 294 338 268 370 C240 404 240 456 280 520 L314 520 C278 458 276 410 302 378 C330 344 338 300 322 262 Z"
-          fill="url(#belly)" stroke="#1a0b2e" stroke-width="5" stroke-linejoin="round"/>
-    <g stroke="#6d9c10" stroke-width="3" fill="none" opacity=".85">
-      <path d="M304 290 L324 296"/><path d="M296 322 L316 330"/><path d="M282 352 L302 362"/><path d="M266 384 L288 394"/><path d="M258 420 L281 426"/><path d="M262 458 L285 460"/><path d="M272 494 L296 494"/>
-    </g>
-  </g>
+  <g stroke="#140824" stroke-linejoin="round" stroke-linecap="round" clip-path="url(#inring)">
+    <!-- fins along the back of the neck (left side), wing-like -->
+    <path stroke-width="6" fill="url(#dk)" d="M206 196 C170 176 132 170 96 178 C128 186 150 198 160 212 C126 214 96 226 72 248 C110 240 140 242 160 252 C128 266 104 290 90 318 C122 296 150 288 172 290 C150 310 138 336 134 366 C154 340 176 326 196 320 C186 340 184 366 190 390 C200 362 214 344 230 334 Z"/>
+    <path stroke-width="0" fill="#e6d2ff" opacity=".55" d="M100 180 C132 184 152 196 160 210 C148 196 128 186 100 180 Z M78 246 C108 238 138 240 158 250 C136 246 108 244 78 246 Z M94 314 C118 296 146 288 170 290 C146 294 122 300 94 314 Z M138 360 C152 338 174 326 194 320 C176 330 158 342 138 360 Z"/>
 
-  <!-- horns -->
-  <path d="M214 170 C190 120 178 92 150 64 C196 88 226 118 244 158 Z" fill="#e9dcff" stroke="#1a0b2e" stroke-width="6" stroke-linejoin="round"/>
-  <path d="M244 160 C236 116 238 88 228 58 C262 92 274 124 272 160 Z" fill="#d7c2ff" stroke="#1a0b2e" stroke-width="6" stroke-linejoin="round"/>
-  <!-- head -->
-  <path d="M196 196 L214 160 L262 146 L312 158 L366 178 L414 196 L428 214 L414 226 L362 228 L330 238
-           L378 256 L408 276 L394 290 L344 284 L300 282 L262 290 L232 266 L212 238 Z"
-        fill="url(#scale)" stroke="#1a0b2e" stroke-width="7" stroke-linejoin="round"/>
-  <!-- mouth -->
-  <path d="M330 238 L378 256 L402 274 L340 268 L300 254 Z" fill="#2a0f3f"/>
-  <!-- teeth -->
-  <g fill="#ffffff" stroke="#1a0b2e" stroke-width="2.5" stroke-linejoin="round">
-    <path d="M346 229 L352 246 L358 229 Z"/><path d="M366 228 L371 243 L377 228 Z"/><path d="M384 228 L388 240 L393 227 Z"/>
-    <path d="M344 268 L349 255 L354 268 Z"/><path d="M362 271 L367 258 L372 271 Z"/><path d="M380 274 L385 262 L390 274 Z"/>
-    <path d="M400 227 L403 238 L408 226 Z"/>
+    <!-- neck: deep S curve down to the bottom right -->
+    <path stroke-width="7" fill="url(#sc)" d="M214 214 C196 254 190 296 206 336 C222 376 262 396 290 420 C318 444 326 478 318 512 L438 512 C446 466 424 424 380 394 C344 370 312 352 302 318 C294 292 300 266 312 244 Z"/>
+    <!-- belly stripe -->
+    <path stroke-width="5" fill="url(#bl)" d="M300 246 C286 274 284 304 298 330 C312 356 346 374 376 396 C406 420 424 456 418 512 L380 512 C386 466 374 438 350 418 C320 394 286 376 272 346 C258 314 264 278 282 246 Z"/>
+    <g fill="none" stroke="#6d9c10" stroke-width="3">
+      <path d="M268 280 L294 286"/><path d="M266 312 L292 316"/><path d="M276 344 L302 344"/><path d="M296 370 L320 364"/><path d="M322 392 L344 382"/><path d="M346 414 L368 402"/><path d="M366 440 L390 432"/><path d="M380 470 L404 466"/>
+    </g>
+    <!-- neck scale highlights -->
+    <g fill="none" stroke="#c99bf5" stroke-width="3" opacity=".7">
+      <path d="M220 300 q10 -10 22 -2"/><path d="M226 340 q10 -10 22 -2"/><path d="M252 372 q10 -10 22 -2"/><path d="M296 410 q10 -10 22 -2"/><path d="M330 440 q10 -10 22 -2"/>
+    </g>
+
   </g>
-  <!-- brow ridge + snout details -->
-  <path d="M250 178 L300 170 L330 186 L296 190 Z" fill="#b87cf0" stroke="#1a0b2e" stroke-width="4" stroke-linejoin="round"/>
-  <path d="M402 200 L414 206" stroke="#1a0b2e" stroke-width="5" stroke-linecap="round"/>
-  <g stroke="#5a228f" stroke-width="3" fill="none" opacity=".7"><path d="M232 214 q16 -6 28 6"/><path d="M244 244 q16 -6 28 6"/><path d="M340 200 l24 6"/><path d="M332 214 l30 4"/></g>
-  <!-- eye -->
-  <path d="M286 188 L318 186 L308 200 L288 199 Z" fill="#c8ff4d" filter="url(#eyeglow)"/>
-  <circle cx="303" cy="193" r="3.5" fill="#ffffff"/>
+  <g stroke="#140824" stroke-linejoin="round" stroke-linecap="round">
+    <!-- horns sweeping back, over the ring -->
+    <path stroke-width="6" fill="#efe4ff" d="M236 150 C210 128 176 112 136 106 C116 104 98 92 92 74 C120 90 152 88 184 94 C222 102 252 116 268 132 Z"/>
+    <path stroke-width="6" fill="#d9c4ff" d="M266 130 C250 102 232 78 204 58 C230 64 262 82 284 104 C292 112 298 120 300 128 Z"/>
+    <!-- head spikes / crest -->
+    <path stroke-width="5" fill="url(#dk)" d="M300 128 L322 92 L326 130 L350 104 L346 142 Z"/>
+
+    <!-- head -->
+    <path stroke-width="7" fill="url(#sc)" d="M206 214 C196 186 206 154 232 140 C262 124 300 120 334 132 C362 142 392 158 420 168 C436 174 446 186 442 198 C438 208 424 210 410 210
+             C392 212 372 214 356 220 C376 226 398 236 414 250 C420 258 414 266 404 264 C380 260 352 256 330 262 C306 268 284 276 264 270 C240 262 218 244 206 214 Z"/>
+    <!-- mouth interior -->
+    <path stroke-width="0" fill="#2a0f3f" d="M356 220 C376 226 398 236 412 249 C392 244 362 242 336 246 C322 240 330 226 356 220 Z"/>
+    <!-- teeth -->
+    <g stroke-width="2" fill="#ffffff">
+      <path d="M362 214 L368 232 L374 213 Z"/><path d="M380 212 L385 228 L391 211 Z"/><path d="M398 211 L402 224 L407 210 Z"/><path d="M414 209 L417 219 L421 208 Z"/>
+      <path d="M352 247 L358 234 L364 247 Z"/><path d="M372 246 L377 234 L383 247 Z"/><path d="M392 249 L396 239 L401 251 Z"/>
+    </g>
+    <!-- nostril and snout ridge -->
+    <path stroke-width="0" fill="#140824" d="M428 182 q8 2 8 8 q-6 0 -10 -4 Z"/>
+    <path fill="none" stroke="#e6d2ff" stroke-width="4" d="M340 140 C366 148 392 160 418 170"/>
+    <!-- brow ridge with highlight -->
+    <path stroke-width="5" fill="#9b55dc" d="M276 154 C298 144 324 146 346 158 C326 160 306 166 290 176 Z"/>
+    <path fill="none" stroke="#f1e4ff" stroke-width="3" d="M282 154 C302 148 322 149 340 156"/>
+    <!-- cheek frill -->
+    <path stroke-width="5" fill="url(#dk)" d="M232 232 L188 236 L222 248 L196 270 L238 258 Z"/>
+    <!-- jaw highlight -->
+    <path fill="none" stroke="#c99bf5" stroke-width="3" d="M270 262 C300 264 326 256 344 254"/>
+    <path fill="none" stroke="#c99bf5" stroke-width="3" opacity=".8" d="M236 200 q12 -8 24 0 M250 224 q12 -8 24 0"/>
+  </g>
+  <!-- glowing eye -->
+  <path d="M304 178 C314 168 330 166 340 172 C334 182 318 188 304 186 Z" fill="#c8ff4d" filter="url(#eg)"/>
+  <circle cx="324" cy="176" r="3.5" fill="#ffffff"/>
 
   <!-- sparkles -->
   <g fill="#c8ff4d" filter="url(#glow)">
-    <path d="M410 96 l5 13 13 5 -13 5 -5 13 -5 -13 -13 -5 13 -5 Z"/>
-    <path d="M444 300 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4 Z"/>
-    <path d="M84 340 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4 Z"/>
-    <path d="M100 120 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3 Z"/>
+    <path d="M440 96 l5 13 13 5 -13 5 -5 13 -5 -13 -13 -5 13 -5 Z"/>
+    <path d="M466 300 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4 Z"/>
+    <path d="M48 420 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4 Z"/>
+    <path d="M70 110 l4 9 9 4 -9 4 -4 9 -4 -9 -9 -4 9 -4 Z"/>
   </g>
 </svg>
