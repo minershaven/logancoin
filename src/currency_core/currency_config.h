@@ -131,7 +131,7 @@
 #define RPC_DEFAULT_PORT                                36211
 #define STRATUM_DEFAULT_PORT                            36777
 #define P2P_NETWORK_ID_TESTNET_FLAG                     0
-#define P2P_MAINTAINERS_PUB_KEY                         "58a23a18b06a6253c5e8a920fd790762903c7bdc66fa2a503aa8c9696d5d8e3e" // Logan Coin maintainers key
+#define P2P_MAINTAINERS_PUB_KEY                         "76fd856bfc15b67b78aca4ccee409ff84d5e834566925cecd28fec24367cf44a" // Logan Coin maintainers key
 #define DIFFICULTY_POS_STARTER                          1
 #else 
 #define P2P_DEFAULT_PORT                                (37211 + CURRENCY_FORMATION_VERSION)
@@ -139,7 +139,7 @@
 #define STRATUM_DEFAULT_PORT                            37888
 #define STRARUM_DEFAULT_PORT                            51113
 #define P2P_NETWORK_ID_TESTNET_FLAG                     1
-#define P2P_MAINTAINERS_PUB_KEY                         "f0aec5c9a0df29d722854c3163c0226ca38304b8d2014a868dcb08e46f0d0135" // Logan Coin testnet maintainers key
+#define P2P_MAINTAINERS_PUB_KEY                         "f39d7a0087b57cd2c7d2382d8b00b234793c801261f0af2b251a695ce8690fb8" // Logan Coin testnet maintainers key
 // Logan Coin testnet: same difficulty rules as mainnet (a fresh chain with no premine)
 #define DIFFICULTY_POS_STARTER                          1
 #define DIFFICULTY_POS_STARTER_TESTNET                  1 // no minimum PoS difficulty
