@@ -131,7 +131,7 @@
 #define RPC_DEFAULT_PORT                                36211
 #define STRATUM_DEFAULT_PORT                            36777
 #define P2P_NETWORK_ID_TESTNET_FLAG                     0
-#define P2P_MAINTAINERS_PUB_KEY                         "8f138bb73f6d663a3746a542770781a09579a7b84cb4125249e95530824ee607"
+#define P2P_MAINTAINERS_PUB_KEY                         "58a23a18b06a6253c5e8a920fd790762903c7bdc66fa2a503aa8c9696d5d8e3e" // Logan Coin maintainers key
 #define DIFFICULTY_POS_STARTER                          1
 #else 
 #define P2P_DEFAULT_PORT                                (37211 + CURRENCY_FORMATION_VERSION)
@@ -139,14 +139,10 @@
 #define STRATUM_DEFAULT_PORT                            37888
 #define STRARUM_DEFAULT_PORT                            51113
 #define P2P_NETWORK_ID_TESTNET_FLAG                     1
-#define P2P_MAINTAINERS_PUB_KEY                         "aaa2d7aabc8d383fd53a3ae898697b28f236ceade6bafc1eecff413a6a02272a"
-#ifdef BUILD_TESTS
-#  define DIFFICULTY_POS_STARTER                        1
-#else
-static_assert(CURRENCY_FORMATION_VERSION == 103);
-#  define DIFFICULTY_POS_STARTER                        5'000'000'000'000'000'000ULL // remove this branch after CURRENCY_FORMATION_VERSION > 103 in the testnet
-#endif
-#define DIFFICULTY_POS_STARTER_TESTNET                  5'000'000'000'000'000'000ULL // mininum possible difficulty after DIFFICULTY_POS_STARTER_TESTNET_HEIGHT
+#define P2P_MAINTAINERS_PUB_KEY                         "f0aec5c9a0df29d722854c3163c0226ca38304b8d2014a868dcb08e46f0d0135" // Logan Coin testnet maintainers key
+// Logan Coin testnet: same difficulty rules as mainnet (a fresh chain with no premine)
+#define DIFFICULTY_POS_STARTER                          1
+#define DIFFICULTY_POS_STARTER_TESTNET                  1 // no minimum PoS difficulty
 #define DIFFICULTY_POS_STARTER_TESTNET_HEIGHT           200
 #endif
 
@@ -320,19 +316,19 @@ static_assert(CURRENCY_FORMATION_VERSION == 103);
 #define ZANO_HARDFORK_06_AFTER_HEIGHT                   999999999999999999
 #define ZANO_HARDFORK_06_MIN_BUILD_VER                  1
 #else
-// Testnet
+// Testnet (Logan Coin: same schedule as mainnet, but Zarcanum comes early so a test run reaches it quickly)
 #define ZANO_HARDFORK_01_AFTER_HEIGHT                   0
 #define ZANO_HARDFORK_02_AFTER_HEIGHT                   0
 #define ZANO_HARDFORK_03_AFTER_HEIGHT                   0
 
-#define ZANO_HARDFORK_04_AFTER_HEIGHT                   850
-#define ZANO_HARDFORK_04_TIMESTAMP_ACTUAL               1778000000ull // 2026-05-05 16:53:20 UTC
+#define ZANO_HARDFORK_04_AFTER_HEIGHT                   100
+#define ZANO_HARDFORK_04_TIMESTAMP_ACTUAL               1794700000ull
 
-#define ZANO_HARDFORK_05_AFTER_HEIGHT                   851
-#define ZANO_HARDFORK_05_MIN_BUILD_VER                  474
+#define ZANO_HARDFORK_05_AFTER_HEIGHT                   101
+#define ZANO_HARDFORK_05_MIN_BUILD_VER                  1
 
-#define ZANO_HARDFORK_06_AFTER_HEIGHT                   1050
-#define ZANO_HARDFORK_06_MIN_BUILD_VER                  474
+#define ZANO_HARDFORK_06_AFTER_HEIGHT                   999999999999999999
+#define ZANO_HARDFORK_06_MIN_BUILD_VER                  1
 #endif
 
 
