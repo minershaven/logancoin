@@ -318,10 +318,13 @@ bool generate_genesis(const std::string& path_config, uint64_t premine_split_amo
   TIME_MEASURE_FINISH_MS(loading_to_map);
   TIME_MEASURE_START_MS(loading_to_map2);
   std::map<std::string, uint64_t> amounts_map2;
-  auto hint_it = amounts_map2.insert(*amounts_map.begin()).first;
-  for (auto it = ++amounts_map.begin(); it != amounts_map.end(); it++)
+  if (!amounts_map.empty()) // Logan Coin: an empty payments list means a genesis with no premine
   {
-    hint_it = amounts_map2.insert(hint_it, *it);
+    auto hint_it = amounts_map2.insert(*amounts_map.begin()).first;
+    for (auto it = ++amounts_map.begin(); it != amounts_map.end(); it++)
+    {
+      hint_it = amounts_map2.insert(hint_it, *it);
+    }
   }
   TIME_MEASURE_FINISH_MS(loading_to_map2);
 
