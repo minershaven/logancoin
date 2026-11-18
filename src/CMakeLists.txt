@@ -205,8 +205,8 @@ if(BUILD_GUI)
   set(CMAKE_AUTOMOC ON)
   set(CMAKE_INCLUDE_CURRENT_DIR ON)
   SET(MACOSX_BUNDLE_ICON_FILE app.icns)
-  add_executable(Zano WIN32 MACOSX_BUNDLE ${QTDAEMON} )
-  add_dependencies(Zano version html_content_hash)
+  add_executable(LoganCoin WIN32 MACOSX_BUNDLE ${QTDAEMON} )
+  add_dependencies(LoganCoin version html_content_hash)
 
   #####  embed html into resources  ######
   set(HTML_DIR ${CMAKE_CURRENT_SOURCE_DIR}/gui/qt-daemon/layout/html)
@@ -227,41 +227,41 @@ if(BUILD_GUI)
   file(APPEND "${GUI_QRC}" "  </qresource>\n</RCC>\n")
 
   qt5_add_resources(ZANO_RESOURCES "${GUI_QRC}")
-  target_sources(Zano PRIVATE ${ZANO_RESOURCES})
-  message(STATUS "[HTML-embed] Embedded ${HTML_COUNT} files into target 'Zano' via ${GUI_QRC}")
+  target_sources(LoganCoin PRIVATE ${ZANO_RESOURCES})
+  message(STATUS "[HTML-embed] Embedded ${HTML_COUNT} files into target 'LoganCoin' via ${GUI_QRC}")
   ##### end qt resources ######
 
-  ENABLE_SHARED_PCH(Zano QTDAEMON)
-  ENABLE_SHARED_PCH_EXECUTABLE(Zano)
+  ENABLE_SHARED_PCH(LoganCoin QTDAEMON)
+  ENABLE_SHARED_PCH_EXECUTABLE(LoganCoin)
 	  
   #QT5_USE_MODULES(Zano WebEngineWidgets WebChannel)
   find_package(Qt5PrintSupport REQUIRED)
 
-  target_link_libraries(Zano wallet rpc currency_core crypto common zlibstatic ethash Qt5::WebChannel Qt5::WebEngineWidgets Qt5::PrintSupport ${CMAKE_THREAD_LIBS_INIT} ${Boost_LIBRARIES} OpenSSL::SSL OpenSSL::Crypto)
+  target_link_libraries(LoganCoin wallet rpc currency_core crypto common zlibstatic ethash Qt5::WebChannel Qt5::WebEngineWidgets Qt5::PrintSupport ${CMAKE_THREAD_LIBS_INIT} ${Boost_LIBRARIES} OpenSSL::SSL OpenSSL::Crypto)
   if (UNIX AND NOT APPLE)
-	target_link_libraries(Zano rt)
+	target_link_libraries(LoganCoin rt)
   endif()
 
   if(APPLE)
-    target_link_libraries(Zano ${COCOA_LIBRARY})
-    set_property(TARGET Zano PROPERTY XCODE_ATTRIBUTE_ENABLE_HARDENED_RUNTIME YES)
+    target_link_libraries(LoganCoin ${COCOA_LIBRARY})
+    set_property(TARGET LoganCoin PROPERTY XCODE_ATTRIBUTE_ENABLE_HARDENED_RUNTIME YES)
   endif()
   if(MSVC)
-    target_link_libraries(Zano shlwapi.lib)
+    target_link_libraries(LoganCoin shlwapi.lib)
   endif()
 
-  set_property(TARGET Zano PROPERTY FOLDER "prog")
-  set_target_properties(Zano PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/gui/qt-daemon/Info.plist.in)
+  set_property(TARGET LoganCoin PROPERTY FOLDER "prog")
+  set_target_properties(LoganCoin PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/gui/qt-daemon/Info.plist.in)
 
   #set(HTML_DIR ${CMAKE_CURRENT_SOURCE_DIR}/gui/qt-daemon/layout/html)
-  set_target_properties(Zano PROPERTIES VS_DEBUGGER_COMMAND_ARGUMENTS "--html-path=${HTML_DIR}")
+  set_target_properties(LoganCoin PROPERTIES VS_DEBUGGER_COMMAND_ARGUMENTS "--html-path=${HTML_DIR}")
 
   set(CMAKE_AUTOMOC OFF)
 
   # GUI convenience "bundle"
   # set(GUI_DIR ${CMAKE_CURRENT_BINARY_DIR}/gui)
-  # set_target_properties(Zano PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${GUI_DIR})
-  # add_custom_command(TARGET Zano POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${HTML_DIR} ${GUI_DIR}/html)
+  # set_target_properties(LoganCoin PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${GUI_DIR})
+  # add_custom_command(TARGET LoganCoin POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${HTML_DIR} ${GUI_DIR}/html)
 endif()
 
 if(APPLE)

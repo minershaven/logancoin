@@ -1,0 +1,54 @@
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    flex-shrink: 0;
+
+    &.scrolled {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+    }
+
+    .breadcrumb {
+        flex-shrink: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        position: relative;
+        padding-right: 3.5rem;
+
+        > span,
+        .link {
+            white-space: nowrap;
+            opacity: 0.75;
+            transition: opacity 0.2s ease-in-out;
+        }
+
+        .link {
+            cursor: pointer;
+        }
+
+        &:hover > span,
+        &:hover .link,
+        &:last-child > span,
+        &:last-child .link {
+            opacity: 1;
+        }
+
+        &:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 0.6rem;
+            right: 1.4rem;
+            width: 0.8rem;
+            height: 0.8rem;
+            border-top: 1px solid;
+            border-right: 1px solid;
+            transform: rotate(45deg);
+        }
+
+        &:last-child {
+            padding-right: 0;
+        }
+    }
+}

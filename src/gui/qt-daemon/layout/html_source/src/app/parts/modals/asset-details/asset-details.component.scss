@@ -1,0 +1,74 @@
+.asset-details-wrapper {
+    padding: 2rem;
+    border-radius: 0.8rem;
+    max-height: 90vh;
+
+    background: var(--dialog-background);
+}
+
+table {
+    td {
+        padding: 2rem;
+    }
+
+    tr {
+        td:nth-child(1) {
+            width: 17rem;
+            color: var(--azure-500);
+        }
+
+        td:nth-child(2) {
+            word-break: break-all;
+        }
+    }
+}
+
+.asset-whitelist {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    h3 {
+        color: var(--main-text);
+        display: inline-flex;
+        align-items: center;
+        font-size: 1.8rem;
+    }
+
+    &.asset-is-whitelisted-globally,
+    &.asset-is-whitelisted {
+        h3 {
+            color: #a3e635;
+        }
+    }
+
+    button {
+        color: var(--azure-500);
+        cursor: pointer;
+    }
+}
+
+.light {
+    :host {
+        table {
+            tr {
+                td:nth-child(1) {
+                    background: #f5f2fb;
+                }
+            }
+        }
+    }
+}
+
+.dark {
+    :host {
+        table {
+            tr {
+                td:nth-child(1) {
+                    background: var(--blue-500);
+                }
+            }
+        }
+    }
+}

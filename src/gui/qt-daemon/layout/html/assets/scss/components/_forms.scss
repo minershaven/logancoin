@@ -1,0 +1,493 @@
+.form {
+    max-width: 50rem;
+    width: 100%;
+    border-radius: 0.8rem;
+
+    .error {
+        color: var(--red-500);
+    }
+
+    &__card {
+        display: flex;
+        flex-direction: column;
+        padding: 2rem 2rem 0;
+        margin-bottom: 2rem;
+        border-radius: 8px;
+        background-color: var(--form-card-background);
+    }
+
+    &__row {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    &__field {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-bottom: 2rem;
+        width: 100%;
+
+        &--input {
+            /* If input is not empty */
+            &:not(:placeholder-shown):not(.invalid):not(.ng-invalid) {
+                /* You need to add a placeholder to your fields. For example: <input "placeholder=" "/> */
+                border: var(--border-not-empty);
+            }
+
+            &:not(:placeholder-shown) {
+                &.invalid,
+                &.ng-touched.ng-invalid {
+                    border: var(--border-error);
+                }
+            }
+
+            /* If input is empty */
+            &:placeholder-shown {
+                border: var(--border);
+            }
+        }
+
+        label,
+        .label {
+            margin-bottom: 0.8rem;
+            color: var(--azure-500);
+        }
+
+        &--row {
+            display: flex;
+            flex: 0 0 auto;
+
+            > div,
+            > fieldset {
+                max-width: calc(50% - 1rem);
+                width: 100%;
+
+                &:first-child {
+                    margin-right: 1rem;
+                }
+
+                &:last-child {
+                    margin-left: 1rem;
+                }
+            }
+        }
+
+        &--input,
+        &--select {
+            border: var(--border);
+            border-radius: 0.8rem;
+            outline: none;
+            padding: 0 1.2rem;
+            width: 100%;
+            height: 4rem;
+            background-color: var(--input-background);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: var(--input-color);
+            font-size: 1.8rem;
+            line-height: 1.2;
+            transition: border 0.2s ease-in-out;
+
+            &:disabled {
+                border: var(--border-disabled);
+                cursor: not-allowed;
+            }
+
+            &:read-only {
+                cursor: default;
+            }
+
+            &:not(:disabled):not(:read-only) {
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+
+            &::placeholder {
+                color: var(--input-placeholder);
+            }
+
+            &.invalid,
+            &.ng-touched.ng-invalid {
+                border: var(--border-error);
+
+                &::placeholder {
+                    color: var(--red-500);
+                }
+            }
+
+            &:not(:disabled):not(:read-only) {
+                &:placeholder-shown {
+                    &:focus {
+                        border: var(--border-not-empty);
+                    }
+                }
+
+                &:hover {
+                    border: var(--border-not-empty);
+
+                    &.invalid,
+                    &.ng-touched.ng-invalid {
+                        border: var(--border-error);
+
+                        &::placeholder {
+                            color: var(--red-500);
+                        }
+                    }
+                }
+            }
+        }
+
+        &.textarea {
+            width: 100%;
+            height: auto;
+
+            textarea {
+                border: var(--border);
+                border-radius: 0.8rem;
+                outline: none;
+                padding: 1rem;
+                width: 100%;
+                min-width: 100%;
+                height: 100%;
+                min-height: 7.5rem;
+                max-height: 7.5rem;
+                overflow: auto;
+                resize: none;
+                background-color: transparent;
+                color: var(--input-color);
+                font-size: 1.8rem;
+                line-height: 1.2;
+
+                &:disabled {
+                    border: var(--border-disabled);
+                    cursor: not-allowed;
+                }
+
+                &:not(:disabled) {
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+
+                &::placeholder {
+                    color: var(--gray-800);
+                }
+
+                /* If input is not empty */
+                &:not(:placeholder-shown) {
+                    /* You need to add a placeholder to your fields. For example: <input "placeholder=" "/> */
+                    border: var(--border-not-empty);
+                }
+
+                /* If input is empty */
+                &:placeholder-shown {
+                    border: var(--border);
+                }
+
+                .ng-touched {
+                    .ng-invalid {
+                        border: var(--border-error);
+                    }
+                }
+
+                &.invalid {
+                    border: var(--border-error);
+
+                    &::placeholder {
+                        color: var(--red-500);
+                    }
+                }
+            }
+        }
+
+        .error,
+        .success,
+        .info {
+            overflow: hidden;
+            width: 100%;
+            font-size: 1.4rem;
+            margin-top: 1rem;
+        }
+
+        .hint {
+            max-width: 24rem;
+            display: flex;
+            justify-content: space-between;
+
+            margin-top: 5px;
+            color: var(--hint-text);
+            font-size: 1.1rem;
+
+            p {
+                font-size: 1.1rem;
+            }
+        }
+
+        &.fixed {
+            padding-bottom: 2.6rem;
+
+            .error,
+            .success,
+            .info {
+                margin-top: 0;
+                position: absolute;
+                bottom: 0.2rem;
+
+                & > * {
+                    font-size: 1.4rem;
+                }
+            }
+
+            .hint {
+                margin-top: 0;
+                position: absolute;
+                bottom: 0.8rem;
+                width: 100%;
+            }
+        }
+
+        .error {
+            color: var(--red-500);
+        }
+
+        .success {
+            color: var(--aqua-500);
+        }
+
+        &-dropdown {
+            position: relative;
+
+            .dropdown {
+                overflow-y: auto;
+                position: absolute;
+                top: calc(100% + 1rem);
+                left: 0;
+                max-width: 100%;
+                width: 100%;
+                max-height: 15rem;
+                border: var(--border);
+            }
+        }
+    }
+
+    .details {
+        .header {
+            padding: 1.2rem 2rem;
+            width: 100%;
+            max-width: 20rem;
+            background-color: var(--details-background);
+            border-radius: 0.8rem 0.8rem 0 0;
+
+            &.border-radius-all {
+                border-radius: 0.8rem;
+            }
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+            background-color: var(--details-background);
+            border-radius: 0 0.8rem 0.8rem 0.8rem;
+        }
+    }
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    min-height: 2.4rem;
+    overflow: hidden;
+    position: relative;
+
+    span {
+        display: inline-block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        cursor: pointer;
+        min-height: 2.4rem;
+        line-height: 2.4rem;
+        padding-left: 3.6rem;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    input[readonly] {
+        & + span {
+            pointer-events: none;
+        }
+
+        & + span:before {
+            pointer-events: none;
+        }
+    }
+
+    input[type='checkbox'] {
+        position: absolute;
+        top: 0;
+        left: 0;
+        visibility: visible;
+        width: 2.4rem;
+        height: 2.4rem;
+        opacity: 0;
+        overflow: hidden;
+
+        & + span {
+            position: relative;
+        }
+
+        & + span:before,
+        & + span:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: all 0.2s ease-in-out;
+        }
+
+        & + span:before {
+            left: 0;
+            width: 2.4rem;
+            height: 2.4rem;
+            border: var(--checkbox-border);
+            border-radius: 0.4rem;
+        }
+
+        &:not(:disabled) + span:hover:before {
+            border: var(--checkbox-hover-border);
+        }
+
+        &:focus + span:before {
+            border: var(--checkbox-active-border);
+        }
+
+        &:checked {
+            & + span:before,
+            & + span:hover:before {
+                border: var(--checkbox-active-border);
+            }
+
+            & + span:after {
+                left: 0.4rem;
+                width: 1.6rem;
+                height: 1.6rem;
+                border-radius: 0.2rem;
+                background: var(--checkbox-checked-background);
+            }
+        }
+
+        &:disabled {
+            & + span {
+                cursor: not-allowed;
+            }
+
+            & + span:before {
+                cursor: not-allowed;
+            }
+        }
+    }
+}
+
+.switch {
+    display: flex;
+    align-items: center;
+    border-radius: 1.1rem;
+    cursor: pointer;
+    padding: 0.2rem;
+    width: 3.6rem;
+    height: 2.2rem;
+    outline: none;
+
+    //transition: all 0.2s ease-in-out;
+
+    &.disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    &.on {
+        justify-content: flex-end;
+        background-color: var(--switch-on-background);
+    }
+
+    &.off {
+        justify-content: flex-start;
+        background-color: var(--switch-off-background);
+    }
+
+    .circle {
+        border-radius: 50%;
+        width: 1.8rem;
+        height: 1.8rem;
+        background-color: var(--switch-circle-background);
+        box-shadow: var(--shadow-gray);
+    }
+}
+
+.amount {
+    .form__field--input {
+        padding-right: 10.8rem;
+    }
+
+    .ticker {
+        position: absolute;
+        top: 3.1rem;
+        right: 4.8rem;
+        width: 5rem;
+        height: 3.6rem;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: var(--amount-ticker-text);
+    }
+
+    .btn-reverse {
+        width: 3.8rem;
+        height: 3.6rem;
+        position: absolute;
+        border-radius: 0 0.4rem 0.4rem 0;
+        right: 0.18rem;
+        top: 3.1rem;
+
+        display: flex;
+        justify-items: center;
+        align-items: center;
+        background: var(--amount-btn-revers-background);
+
+        mat-icon {
+            color: var(--azure-500);
+        }
+    }
+}
+
+.XSmall,
+.Small {
+    .form {
+        &__field {
+            &--row {
+                flex-direction: column;
+
+                > div,
+                > fieldset {
+                    max-width: 100%;
+
+                    &:first-child {
+                        margin-right: 0;
+                    }
+
+                    &:last-child {
+                        margin-left: 0;
+                    }
+                }
+            }
+        }
+    }
+}

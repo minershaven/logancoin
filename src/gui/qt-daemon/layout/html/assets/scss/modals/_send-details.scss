@@ -1,0 +1,49 @@
+app-send-details-modal,
+app-success-sweep-bare-outs,
+app-transaction-details-for-custom-assets,
+app-swap-details {
+    .status {
+        .image {
+            max-width: 13rem;
+            max-height: 13rem;
+            width: 100%;
+            height: 100%;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+    .details {
+        .header {
+            min-height: 4rem;
+            max-height: 4rem;
+            background-color: var(--details-background);
+        }
+
+        &-wrapper {
+            max-height: 35rem;
+            background-color: var(--details-background);
+            scroll-behavior: smooth;
+        }
+
+        &-list {
+            width: 100%;
+            .item {
+                .image {
+                    max-width: 1.5rem;
+                    max-height: 1.5rem;
+                    width: 100%;
+                    height: 100%;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
+        }
+    }
+}

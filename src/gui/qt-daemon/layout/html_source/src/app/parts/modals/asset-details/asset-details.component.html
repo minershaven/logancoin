@@ -1,0 +1,96 @@
+<h2 aria-live="assertive" mat-dialog-title>{{ data?.title ?? 'ASSETS.MODALS.ASSET_DETAILS.TITLE' | translate }}</h2>
+
+<mat-dialog-content>
+    <ng-container [ngSwitch]="assetWhitelistedStateView">
+        <ng-container *ngSwitchCase="'assetIsWhitelisted'">
+            <div class="asset-whitelist asset-is-whitelisted">
+                <h3>
+                    <mat-icon svgIcon="zano-check" class="mr-1"></mat-icon>
+                    {{ 'ASSETS.MODALS.ASSET_DETAILS.LABELS.ASSET_IS_WHITELISTED' | translate }}
+                </h3>
+                <button type="button" (click)="removeAssetFromWhitelist()">
+                    <mat-icon class="mr-1" svgIcon="zano-trash"></mat-icon> {{ 'ASSETS.MODALS.ASSET_DETAILS.BUTTONS.REMOVE' | translate }}
+                </button>
+            </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="'assetIsNotWhitelisted'">
+            <div class="asset-whitelist asset-is-not-whitelisted">
+                <h3>
+                    <mat-icon svgIcon="zano-warning-stroke" class="mr-1"></mat-icon>
+                    {{ 'ASSETS.MODALS.ASSET_DETAILS.LABELS.ASSET_IS_NOT_WHITELISTED' | translate }}
+                </h3>
+                <button type="button" (click)="addAssetToWhitelist()">
+                    <mat-icon class="mr-1" svgIcon="zano-add"></mat-icon> {{ 'ASSETS.MODALS.ASSET_DETAILS.BUTTONS.ADD_ASSET' | translate }}
+                </button>
+            </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="'assetIsWhitelistedGlobally'">
+            <div class="asset-whitelist asset-is-whitelisted-globally">
+                <h3>{{ 'ASSETS.MODALS.ASSET_DETAILS.LABELS.ASSET_IS_GLOBALLY_WHITELISTED' | translate }}</h3>
+            </div>
+        </ng-container>
+        <ng-container *ngSwitchDefault></ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="data.asset_info as asset_info; else templateEmpty">
+        <table class="rounded-corners">
+            <tbody>
+                <tr>
+                    <td>{{ 'ASSETS.MODALS.ASSET_DETAILS.LABELS.NAME' | translate }}</td>
+                    <td>{{ asset_info.full_name }}</td>
+                </tr>
+                <tr>
+                    <td>{{ 'ASSETS.MODALS.ASSET_DETAILS.LABELS.TICKER' | translate }}</td>
+                    <td>{{ asset_info.ticker }}</td>
+                </tr>
+                <tr>
+                    <td>{{ 'ASSETS.MODALS.ASSET_DETAILS.LABELS.OWNER' | translate }}</td>
+                    <td (contextmenu)="variablesService.onContextMenuOnlyCopy($event, asset_info.owner)">
+                        {{ asset_info.owner }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>{{ 'ASSETS.MODALS.ASSET_DETAILS.LABELS.ID' | translate }}</td>
+                    <td (contextmenu)="variablesService.onContextMenuOnlyCopy($event, asset_info.asset_id)">
+                        {{ asset_info.asset_id }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>{{ 'ASSETS.MODALS.ASSET_DETAILS.LABELS.CURRENT_SUPPLY' | translate }}</td>
+                    <td>
+                        <ng-container *ngIf="asset_info.asset_id !== zanoAssetInfo.asset_id; else zanoCurrentSupply">
+                            {{ asset_info.current_supply | intToMoney : asset_info.decimal_point }}
+                        </ng-container>
+
+                        <ng-template #zanoCurrentSupply>
+                            <ng-container *ngIf="variablesService.zano_current_supply !== undefined; else emptyCurrentSupply">
+                                {{ variablesService.zano_current_supply | intToMoney : asset_info.decimal_point }}
+                            </ng-container>
+                        </ng-template>
+
+                        <ng-template #emptyCurrentSupply> Unknown</ng-template>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>{{ 'ASSETS.MODALS.ASSET_DETAILS.LABELS.MAX_SUPPLE' | translate }}</td>
+                    <td>
+                        {{
+                            asset_info.asset_id === zanoAssetInfo.asset_id
+                                ? 'Uncapped'
+                                : (asset_info.total_max_supply | intToMoney : asset_info.decimal_point)
+                        }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </ng-container>
+
+    <ng-template #templateEmpty>No data</ng-template>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button appAutofocus cdkFocusInitial class="outline big w-100" mat-dialog-close type="button">
+        {{ 'MODALS.OK' | translate }}
+    </button>
+</mat-dialog-actions>

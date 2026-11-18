@@ -1,0 +1,20 @@
+.migrate-alert {
+    .btn-migrate {
+        background-color: #8b5cf633;
+        color: #8b5cf6;
+        font-size: 1.8rem;
+        line-height: 1.2;
+        padding: 0.8rem 2rem;
+        border-radius: 0.8rem;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+            background-color: #8b5cf650;
+        }
+    }
+
+    .migration-details {
+        font-size: 1.6rem;
+    }
+}

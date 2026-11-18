@@ -1,0 +1,59 @@
+:root {
+    // red
+    --red-600: rgba(255, 103, 103, 0.75);
+    --red-500: #ff6767;
+    --red-100: #ffcbcb;
+
+    // blue
+    --blue-900: #130b2b;
+    --blue-800: #160e33;
+    --blue-700: #1e1245;
+    --blue-500: #2b1a5e;
+    --blue-450: #3b2478;
+    --blue-400: rgba(139, 92, 246, 0.3);
+    --blue-300: rgba(139, 92, 246, 0.15);
+
+    // orange
+    --orange-500: #ff6f00;
+
+    // gray
+    --gray-900: rgba(255, 255, 255, 0.1);
+    --gray-800: rgba(255, 255, 255, 0.2);
+    --gray-700: rgba(255, 255, 255, 0.3);
+    --gray-600: rgba(255, 255, 255, 0.4);
+    --gray-500: rgba(255, 255, 255, 0.5);
+    --gray-400: rgba(255, 255, 255, 0.75);
+
+    // aqua
+    --aqua-500: #a3e635;
+
+    // azure
+    --azure-600: #6d3fd6;
+    --azure-500: #8b5cf6;
+
+    // white
+    --white-500: #ffffff;
+
+    // black
+    --black-300: rgba(0, 0, 0, 0.6);
+
+    // amethyst
+    --amethyst-500: #9a69f7;
+
+    // silver
+    --silver-500: #8898b5;
+
+    // gradient
+    --gradientAquaToBlue: radial-gradient(100% 188.88% at 0% 0%, #a3e635 0%, #7c3aed 100%);
+    --gradientLightAmethystToPurpurle: radial-gradient(100% 246.57% at 0% 0%, #523caa 0%, #3720aa 100%);
+    --gradientAmethystToPurpurle: radial-gradient(100% 246.57% at 0% 0%, #a366ff 0%, #601fff 100%);
+    --gradientCyanToTurquoise: radial-gradient(100% 188.88% at 0% 0%, #a3e635 0%, #65a30d 100%);
+
+    // shadow
+    --shadow-gray: 0px 2.11765px 5.64706px rgba(0, 0, 0, 0.15), 0px 2.11765px 0.705882px rgba(0, 0, 0, 0.06);
+    --shadow-black-300: 0 0 1rem var(--black-300);
+
+    // chart
+    --chartOptionsBackgroundColor: #2b3644;
+    --chartOptionsHoverColor: #556576;
+}

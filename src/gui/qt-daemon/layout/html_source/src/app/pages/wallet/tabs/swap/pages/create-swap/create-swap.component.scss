@@ -1,0 +1,45 @@
+:host {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.error {
+    color: var(--red-500);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+}
+
+.actions {
+    display: flex;
+}
+
+.wrapper-reverse {
+    width: 100%;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+
+    .revers {
+        background: var(--btn-icon-background);
+        width: 36px;
+        height: 36px;
+        border-radius: 999px;
+
+        &:hover {
+            background: var(--btn-icon-hover-background);
+        }
+
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+
+        .icon {
+            transform: rotate(90deg);
+        }
+    }
+}

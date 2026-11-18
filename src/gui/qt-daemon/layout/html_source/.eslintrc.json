@@ -1,0 +1,99 @@
+{
+    "root": true,
+    "ignorePatterns": ["src/**/*.spec.ts"],
+    "plugins": ["@typescript-eslint"],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "project": ["./tsconfig.json"],
+        "createDefaultProgram": true
+    },
+    "overrides": [
+        {
+            "files": ["*.ts"],
+            "parserOptions": {
+                "project": ["tsconfig.json", "e2e/tsconfig.json"]
+            },
+            "extends": [
+                "plugin:@angular-eslint/recommended",
+                "plugin:@angular-eslint/template/process-inline-templates",
+                "plugin:@typescript-eslint/recommended",
+                "plugin:@typescript-eslint/recommended-requiring-type-checking",
+                "plugin:prettier/recommended"
+            ],
+            "rules": {
+                "@angular-eslint/component-selector": [
+                    "error",
+                    {
+                        "prefix": ["app", "zano"],
+                        "style": "kebab-case",
+                        "type": "element"
+                    }
+                ],
+                "@angular-eslint/directive-selector": [
+                    "error",
+                    {
+                        "prefix": ["app", "zano"],
+                        "style": "camelCase",
+                        "type": "attribute"
+                    }
+                ],
+
+                "@typescript-eslint/unbound-method": ["error", { "ignoreStatic": true }],
+                "@typescript-eslint/explicit-function-return-type": [
+                    "error",
+                    {
+                        "allowedNames": ["ignoredFunctionName", "ignoredMethodName"]
+                    }
+                ],
+
+                "@typescript-eslint/no-explicit-any": "off",
+                "@typescript-eslint/no-floating-promises": "off",
+                "@typescript-eslint/no-misused-promises": "off",
+                "@typescript-eslint/no-namespace": "off",
+                "@typescript-eslint/no-unsafe-argument": "off",
+                "@typescript-eslint/no-unsafe-assignment": "off",
+                "@typescript-eslint/no-unsafe-call": "off",
+                "@typescript-eslint/no-unsafe-member-access": "off",
+                "@typescript-eslint/no-unsafe-return": "off",
+                "@typescript-eslint/restrict-plus-operands": "off",
+
+                "prettier/prettier": ["error", { "endOfLine": "auto" }],
+
+                "@angular-eslint/no-host-metadata-property": "off",
+                "@angular-eslint/no-input-rename": "off",
+                "@angular-eslint/no-output-on-prefix": "off",
+                "@typescript-eslint/restrict-template-expressions": [
+                    "error",
+                    {
+                        "allowAny": true,
+                        "allowNumber": true,
+                        "allowBoolean": true,
+                        "allowNullish": true
+                    }
+                ]
+            }
+        },
+        {
+            "files": ["*.html"],
+            "extends": ["plugin:@angular-eslint/template/recommended"],
+            "rules": {
+                "@angular-eslint/template/no-negated-async": "off"
+            }
+        },
+        {
+            "files": ["*.html"],
+            "excludedFiles": ["*inline-template-*.component.html"],
+            "extends": ["plugin:prettier/recommended"],
+            "rules": {
+                "prettier/prettier": [
+                    "error",
+                    {
+                        "singleQuote": true,
+                        "endOfLine": "auto",
+                        "parser": "angular"
+                    }
+                ]
+            }
+        }
+    ]
+}

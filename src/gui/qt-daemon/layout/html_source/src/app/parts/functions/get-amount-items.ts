@@ -1,0 +1,84 @@
+import { Subtransfer, Transaction } from '@api/models/transaction.model';
+import { Wallet } from '@api/models/wallet.model';
+import { intToMoney } from '@parts/functions/int-to-money';
+import { AssetInfo } from '@api/models/assets.model';
+import { ZANO_ASSET_INFO } from '@parts/data/zano-assets-info';
+import { isFinalizator, isInitiator, isSelfTransaction, isSwapTransaction } from '@parts/functions/identify-transaction';
+import { AmountItems } from '@parts/interfaces/amount-items.interface';
+
+export const getAmountItems = (transaction: Transaction, wallet: Wallet): AmountItems => {
+    const { subtransfers_by_pid, fee } = transaction;
+
+    const allSubtransfers: Subtransfer[] = [];
+    if (subtransfers_by_pid) {
+        for (const group of subtransfers_by_pid) {
+            allSubtransfers.push(...group.subtransfers);
+        }
+    }
+
+    const items: { amount: string; ticker: string }[] = [];
+
+    if (!allSubtransfers.length) {
+        items.push({ amount: '0', ticker: ZANO_ASSET_INFO.ticker });
+        return items;
+    }
+
+    if (isInitiator(transaction) && !Boolean(allSubtransfers.find(({ asset_id }) => asset_id === ZANO_ASSET_INFO.asset_id))) {
+        const preparedAmount: string = intToMoney(fee, ZANO_ASSET_INFO.decimal_point);
+        items.push({ amount: preparedAmount, ticker: ZANO_ASSET_INFO.ticker });
+    }
+
+    allSubtransfers.forEach((subtransfer: Subtransfer) => {
+        const { asset_id, amount, is_income } = subtransfer;
+        const asset_info: AssetInfo | undefined = wallet.allAssetsInfo.find((v) => asset_id === v.asset_id);
+
+        if (!asset_info) {
+            if (amount.toNumber() === 0) {
+                return;
+            }
+
+            const preparedAmount: string = (is_income ? amount : amount.negated()).toString();
+            items.push({ amount: preparedAmount, ticker: '***' });
+            return;
+        }
+
+        const { ticker, decimal_point } = asset_info;
+
+        if (asset_id !== ZANO_ASSET_INFO.asset_id) {
+            if (amount.toNumber() === 0) {
+                return;
+            }
+
+            const preparedAmount: string = intToMoney(is_income ? amount : amount.negated(), decimal_point);
+            items.push({ amount: preparedAmount, ticker });
+            return;
+        }
+
+        if (asset_id === ZANO_ASSET_INFO.asset_id) {
+            const { address } = wallet;
+
+            const selfTransaction: boolean = isSelfTransaction(transaction, address);
+            const swapTransaction: boolean = isSwapTransaction(transaction);
+            const finalizator: boolean = isFinalizator(transaction);
+            const initiator: boolean = isInitiator(transaction);
+
+            const condition_1: boolean = !amount.eq(fee ?? 0) || selfTransaction || (swapTransaction && finalizator);
+            const condition_2: boolean = amount.toNumber() !== 0;
+
+            if (!is_income ? condition_1 : condition_2) {
+                let preparedAmount!: string;
+
+                if (is_income) {
+                    preparedAmount = intToMoney(initiator ? amount.plus(fee) : amount, decimal_point);
+                } else {
+                    preparedAmount = intToMoney((initiator ? amount.minus(fee ?? 0) : amount).negated(), decimal_point);
+                }
+
+                items.push({ amount: preparedAmount, ticker });
+                return;
+            }
+        }
+    });
+
+    return items;
+};

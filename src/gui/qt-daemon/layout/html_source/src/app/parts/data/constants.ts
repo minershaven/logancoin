@@ -1,0 +1,30 @@
+import { BigNumber } from 'bignumber.js';
+
+// \(2^{64}-1\) => (18,446,744,073,709,551,615)
+export const MAXIMUM_VALUE = BigNumber('18446744073709551615');
+export const MIXIN = 15; // default mixin value
+export const RCV_ADDR_QR_SCALE = 1.5; // scale factor for QR code
+
+export const AUDITABLE_WALLET_HELP_PAGE = 'theminershaven.org/logancoin/docs/';
+export const CREATE_NEW_WALLET_HELP_PAGE = 'theminershaven.org/logancoin/docs/';
+export const LOCKED_BALANCE_HELP_PAGE = 'theminershaven.org/logancoin/docs/';
+export const DOWNLOADS_PAGE_URL = 'theminershaven.org/logancoin/';
+export const ZARCANUM_MIGRATION = 'theminershaven.org/logancoin/docs/';
+
+export const BLOCK_EXPLORER_TX_URL_PREFIX = 'theminershaven.org/logancoin/explorer/tx/';
+export const BLOCK_EXPLORER_TN_TX_URL_PREFIX = 'theminershaven.org/logancoin/testnet-explorer/tx/';
+
+export const MAX_WALLET_NAME_LENGTH = 25;
+export const MAX_COMMENT_LENGTH = 255;
+
+export const DEFAULT_ASSET_LOGO_SRC = 'assets/currency-icons/custom_token.svg';
+
+export const DEFAULT_FEE = '0.01';
+export const DEFAULT_FEE_BIG = BigNumber('10000000000');
+export const DEFAULT_PRICE_ALIAS = BigNumber.sum('100000000000', DEFAULT_FEE_BIG);
+
+// Max destinations length 31 if all asset_id === ZANO_ASSET_INFO.asset_id
+export const MAX_DESTINATIONS_LENGTH = 31;
+
+export const ALIAS_PREFIX = '@';
+export const LEGACY_PREFIX = '[legacy]';

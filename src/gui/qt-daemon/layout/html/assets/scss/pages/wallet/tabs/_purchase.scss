@@ -1,0 +1,57 @@
+app-purchase {
+    .container {
+        position: relative;
+
+        .form {
+            max-width: 100%;
+        }
+
+        .details {
+            .content {
+                .form__field--row {
+                    > div {
+                        flex: 0 1 22rem;
+                        margin-right: 2rem;
+
+                        &:last-child {
+                            margin-right: 0;
+                        }
+                    }
+                }
+            }
+        }
+
+        .purchase-buttons {
+            button {
+                flex: 0 1 33%;
+                margin-right: 0.5rem;
+
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+
+        .nullify-block-row {
+            .nullify-block-buttons {
+                button {
+                    flex: 0 1 25%;
+                    margin: 0 0.5rem;
+                }
+            }
+        }
+
+        .time-cancel-block-row {
+            .form__field {
+                width: 25%;
+            }
+
+            .time-cancel-block-buttons {
+                button {
+                    flex: 0 1 25%;
+                    margin: 0 0.5rem;
+                }
+            }
+        }
+    }
+}

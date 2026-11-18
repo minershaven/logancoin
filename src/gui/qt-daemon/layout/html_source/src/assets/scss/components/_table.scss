@@ -1,0 +1,265 @@
+table.zano-table {
+    width: 100%;
+    table-layout: fixed;
+
+    .row-divider {
+        height: 1rem;
+        -webkit-transition: 0.2s height linear, 0s font-size;
+        transition: 0.2s height linear, 0s font-size;
+        transition-delay: 0s, 0.2s;
+
+        &.hide {
+            height: 0;
+        }
+    }
+
+    & > thead {
+        text-align: left;
+        border-radius: 0.8rem;
+        overflow: auto;
+
+        & > tr {
+            & > th {
+                background-color: var(--tab-content-background);
+                z-index: 5;
+                max-width: 10rem;
+                overflow: hidden;
+                text-overflow: ellipsis;
+
+                .bg {
+                    background-color: var(--table-thead-bg);
+                }
+
+                .title {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    padding: 2rem;
+                    width: 100%;
+                    white-space: nowrap;
+                }
+
+                &:first-child {
+                    .title {
+                        border-radius: 0.8rem 0 0 0.8rem;
+                    }
+                }
+
+                &:last-child {
+                    .title {
+                        border-radius: 0 0.8rem 0.8rem 0;
+                    }
+                }
+            }
+
+            /** Sticky header */
+            & > th {
+                position: sticky;
+                top: 0;
+            }
+        }
+    }
+
+    & > tbody {
+        text-align: left;
+
+        & > tr {
+            background-color: var(--table-row-bg);
+            -webkit-transition: 0.5s height linear, 0s font-size;
+            transition: 0.5s height linear, 0s font-size;
+            transition-delay: 0s, 0.5s;
+            height: auto;
+
+            & > td {
+                padding: 2rem;
+                vertical-align: middle;
+                white-space: nowrap;
+                max-width: 30rem;
+                overflow: hidden;
+                text-overflow: ellipsis;
+
+                &:first-child {
+                    border-radius: 0.8rem 0 0 0.8rem;
+                }
+
+                &:last-child {
+                    border-radius: 0 0.8rem 0.8rem 0;
+                }
+            }
+
+            & > &:not(.details) {
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.table-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: var(--table-info-border);
+    border-radius: 0.8rem;
+    overflow: hidden;
+
+    .separator {
+        border: none;
+        border-bottom: var(--table-info-border);
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: nowrap;
+        width: 100%;
+        min-height: 6rem;
+
+        .title,
+        .text {
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        .title {
+            color: var(--azure-500);
+            background: var(--table-info-label-background);
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .text {
+            width: 100%;
+            word-break: break-word;
+        }
+
+        &:first-child {
+            .title {
+                border-radius: 0.8rem 0 0 0;
+            }
+        }
+        &:last-child {
+            .title {
+                border-radius: 0 0 0 0.8rem;
+            }
+        }
+    }
+}
+
+.zano-table-info__wrap {
+    border: var(--table-info-border);
+    border-radius: 0.8rem;
+    overflow: hidden;
+
+    // Need for fix offset for table
+    padding: 0 1px;
+}
+
+.zano-table-info {
+    width: 100%;
+
+    border-collapse: inherit;
+    border-spacing: initial;
+
+    .zano-table-info__amount-cell {
+        width: 100%;
+        display: inline-flex;
+        align-items: center;
+
+        .token-logo,
+        .ticker {
+            flex-shrink: 0;
+        }
+
+        .ticker {
+            opacity: 0.75;
+        }
+
+        &.right {
+            justify-content: flex-end;
+        }
+    }
+
+    .mat-divider {
+        border-top-color: var(--table-info-border-color);
+    }
+
+    .zano-table-info__row {
+        &:first-child {
+            .zano-table-info__cell {
+                &:first-child {
+                    border-top-left-radius: 0.6rem;
+                }
+            }
+        }
+
+        &:last-child {
+            .zano-table-info__cell {
+                &:first-child {
+                    border-bottom-left-radius: 0.6rem;
+                }
+            }
+        }
+
+        .zano-table-info__cell {
+            height: 4.1rem;
+            vertical-align: middle;
+            word-break: break-word;
+            padding: 1.2rem;
+            font-size: 1.6rem;
+
+            span {
+                font-size: 1.6rem;
+            }
+
+            &:first-child {
+                background-color: var(--table-info-label-background);
+                color: var(--azure-500);
+                min-width: 12.3rem;
+            }
+
+            &:last-child {
+                width: 100%;
+            }
+        }
+    }
+}
+
+// Table with rounded-corners
+table.rounded-corners {
+    border-spacing: 0;
+    border-collapse: separate;
+    border-radius: 1rem;
+    border: var(--table-rounded-corners-border);
+}
+
+table.rounded-corners th:not(:last-child),
+table.rounded-corners td:not(:last-child) {
+    border-right: var(--table-rounded-corners-border);
+}
+
+table.rounded-corners > tbody > tr:first-child > td:first-child {
+    border-top-left-radius: 0.8rem;
+}
+table.rounded-corners > tbody > tr:first-child > td:last-child {
+    border-top-right-radius: 0.8rem;
+}
+
+table.rounded-corners > tbody > tr:last-child > td:first-child {
+    border-bottom-left-radius: 0.8rem;
+}
+
+table.rounded-corners > tbody > tr:last-child > td:last-child {
+    border-bottom-right-radius: 0.8rem;
+}
+
+table.rounded-corners > thead > tr:not(:last-child) > th,
+table.rounded-corners > thead > tr:not(:last-child) > td,
+table.rounded-corners > tbody > tr:not(:last-child) > th,
+table.rounded-corners > tbody > tr:not(:last-child) > td,
+table.rounded-corners > tfoot > tr:not(:last-child) > th,
+table.rounded-corners > tfoot > tr:not(:last-child) > td,
+table.rounded-corners > tr:not(:last-child) > td,
+table.rounded-corners > tr:not(:last-child) > th,
+table.rounded-corners > thead:not(:last-child),
+table.rounded-corners > tbody:not(:last-child),
+table.rounded-corners > tfoot:not(:last-child) {
+    border-bottom: var(--table-rounded-corners-border);
+}

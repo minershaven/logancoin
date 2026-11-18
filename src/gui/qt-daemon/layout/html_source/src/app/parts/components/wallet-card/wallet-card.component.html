@@ -1,0 +1,34 @@
+<div
+    (click)="select($event, wallet.wallet_id)"
+    (keydown.enter)="select($event, wallet.wallet_id)"
+    (keydown.space)="select($event, wallet.wallet_id)"
+    [attr.aria-selected]="wallet?.wallet_id === variablesService?.current_wallet?.wallet_id"
+    [ngClass]="{
+        active: wallet?.wallet_id === variablesService?.current_wallet?.wallet_id,
+        auditable: wallet.is_auditable && !wallet.is_watch_only,
+        'watch-only': wallet.is_watch_only
+    }"
+    class="wallet"
+    role="option"
+    tabindex="0"
+>
+    <span *ngIf="variablesService.testnet" class="testnet">Testnet</span>
+
+    <div class="content">
+        <header class="header">
+            <div class="overflow-hidden">
+                <zano-wallet-card-name [wallet]="wallet"></zano-wallet-card-name>
+            </div>
+
+            <zano-wallet-card-button-close [wallet]="wallet"></zano-wallet-card-button-close>
+        </header>
+
+        <zano-wallet-card-balance [wallet]="wallet"></zano-wallet-card-balance>
+
+        <zano-wallet-card-alias [wallet]="wallet"></zano-wallet-card-alias>
+
+        <zano-wallet-card-staking [wallet]="wallet"></zano-wallet-card-staking>
+
+        <zano-wallet-card-progress [wallet]="wallet"></zano-wallet-card-progress>
+    </div>
+</div>

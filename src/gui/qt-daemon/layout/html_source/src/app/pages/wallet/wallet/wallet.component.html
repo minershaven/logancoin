@@ -1,0 +1,146 @@
+<div class="header mb-2" fxFlex="0 0 auto" fxLayout="row nowrap" fxLayoutAlign="space-between start" fxLayoutGap="1rem">
+    <div class="left overflow-hidden" fxFlex="1 1 auto" fxLayout="row nowrap" fxLayoutAlign="start center" fxLayoutGap="3rem">
+        <div class="wallet-wrapper" fxLayout="column" fxLayoutAlign="start start">
+            <div class="title" fxLayout="row nowrap" fxLayoutAlign="start center" fxLayoutGap="1rem">
+                <h1 class="text-ellipsis">
+                    {{ variablesService.current_wallet.address | zanoShortString }}
+                </h1>
+
+                <app-copy-button
+                    [value]="variablesService.current_wallet.address"
+                    [matTooltip]="variablesService.current_wallet.address"
+                    [matTooltipShowDelay]="800"
+                    matTooltipClass="mat-tooltip-address"
+                    matTooltipPosition="below"
+                >
+                </app-copy-button>
+
+                <zano-alias-controls></zano-alias-controls>
+            </div>
+        </div>
+
+        <ng-container *ngIf="isShowMigrateAlert">
+            <hr
+                aria-hidden="true"
+                fxFlex="0 0 1px"
+                style="height: 3.6rem; border: none; border-right: var(--table-rounded-corners-border)"
+            />
+            <zano-migrate-alert></zano-migrate-alert>
+        </ng-container>
+    </div>
+
+    <div class="right" fxFlex fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="1rem">
+        <zano-shield-testnet *ngIf="variablesService.testnet"></zano-shield-testnet>
+
+        <zano-visibility-balance-button></zano-visibility-balance-button>
+
+        <button
+            (click)="$event.stopPropagation()"
+            [disabled]="settingsButtonDisabled && !variablesService.current_wallet.loaded"
+            [matMenuTriggerFor]="menu"
+            class="btn-icon circle big"
+            type="button"
+        >
+            <mat-icon svgIcon="zano-wallet-settings"></mat-icon>
+        </button>
+
+        <mat-menu #menu="matMenu" class="zano-mat-menu">
+            <button
+                [disabled]="!variablesService.current_wallet.loaded"
+                [routerLink]="['/details']"
+                mat-menu-item
+                routerLinkActive="active"
+                [matTooltip]="'WALLET.TOOLTIPS.SETTINGS' | translate"
+                [matTooltipShowDelay]="800"
+                matTooltipPosition="left"
+            >
+                <mat-icon svgIcon="zano-settings"></mat-icon>
+                <span>{{ 'WALLET_DETAILS.WALLET_OPTIONS' | translate }}</span>
+            </button>
+
+            <ng-container *ngIf="variablesService.is_hardfok_active$ | async">
+                <button
+                    (click)="addCustomToken()"
+                    [disabled]="!variablesService.current_wallet.loaded"
+                    mat-menu-item
+                    [matTooltip]="'WALLET.TOOLTIPS.WHITELIST_ASSET' | translate"
+                    [matTooltipShowDelay]="800"
+                    matTooltipPosition="left"
+                >
+                    <mat-icon svgIcon="zano-plus"></mat-icon>
+                    <span>{{ 'WALLET_DETAILS.WHITELIST_ASSET' | translate }}</span>
+                </button>
+            </ng-container>
+
+            <button
+                (click)="exportHistory()"
+                [disabled]="variablesService.current_wallet.history.length <= 0 || !variablesService.current_wallet.loaded"
+                mat-menu-item
+                [matTooltip]="'EXPORT_HISTORY.TOOLTIP' | translate"
+                [matTooltipShowDelay]="800"
+                matTooltipPosition="left"
+            >
+                <mat-icon svgIcon="zano-export"></mat-icon>
+                <span>{{ 'EXPORT_HISTORY.EXPORT_BUTTON' | translate }}</span>
+            </button>
+
+            <ng-container *ngIf="walletSyncVisible">
+                <button
+                    (click)="resyncCurrentWallet(variablesService.current_wallet.wallet_id)"
+                    [disabled]="!variablesService.current_wallet.loaded"
+                    mat-menu-item
+                    [matTooltip]="'WALLET_DETAILS.RESYNC_WALLET' | translate"
+                    [matTooltipShowDelay]="800"
+                    matTooltipPosition="left"
+                >
+                    <mat-icon svgIcon="zano-update"></mat-icon>
+                    <span>{{ 'WALLET_DETAILS.RESYNC_WALLET_BUTTON' | translate }}</span>
+                </button>
+            </ng-container>
+
+            <button
+                (click)="close(variablesService.current_wallet.wallet_id)"
+                mat-menu-item
+                [matTooltip]="'WALLET.TOOLTIPS.REMOVE' | translate"
+                [matTooltipShowDelay]="800"
+                matTooltipPosition="left"
+            >
+                <mat-icon svgIcon="zano-close-v2"></mat-icon>
+                <span>{{ 'WALLET_DETAILS.BUTTON_REMOVE' | translate }}</span>
+            </button>
+        </mat-menu>
+    </div>
+</div>
+
+<div class="tabs">
+    <div class="tabs-header">
+        <ng-container *ngFor="let tab of tabs">
+            <ng-container *ngIf="!tab.hidden">
+                <button
+                    role="link"
+                    [disabled]="tab.disabled"
+                    [routerLink]="['/wallet' + tab.link]"
+                    [attr.aria-label]="tab.title | translate"
+                    class="tab-header"
+                    routerLinkActive="active"
+                >
+                    <mat-icon [svgIcon]="tab.icon"></mat-icon>
+                    <span *ngIf="isViewTabName$ | async" class="ml-1">{{ tab.title | translate }}</span>
+                    <span *ngIf="tab.indicator" class="indicator">{{ variablesService.current_wallet.new_contracts }}</span>
+                </button>
+            </ng-container>
+        </ng-container>
+    </div>
+    <div class="tabs-content">
+        <router-outlet></router-outlet>
+
+        <div *ngIf="loader" role="status" aria-live="polite" class="wrapper-tab-preloader">
+            <div class="preloader">
+                <p class="mb-2">
+                    {{ 'COMMON.LOADING' | translate }}
+                </p>
+                <div class="loading-bar"></div>
+            </div>
+        </div>
+    </div>
+</div>
